@@ -27,7 +27,9 @@ body {
   grid-column-gap: 1rem;
   grid-template-areas: 'input button';
 
-  // Add an animation here
+  animation-name: slide-up;
+  animation-duration: 500ms;
+  animation-fill-mode: backwards;
 
   --color: var(--color-gray);
   &:focus-within {
@@ -36,7 +38,9 @@ body {
 
   > .ui-input,
   > .ui-button {
-    // Add an animation here
+    animation-name: fade;
+    animation-duration: 1s;
+    animation-fill-mode: backwards;
   }
 }
 
@@ -70,10 +74,40 @@ body {
   overflow: hidden;
 }
 
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes slide-up {
-  // Add keyframes here
+  0% {
+    transform: translateY(calc(50vh + 50%));
+  }
+
+  100% {
+    transform: none;
+  }
 }
 
 @keyframes shake {
-  // Add a shake animation here
+  0% {
+    transform: none;
+  }
+
+  33.3333% {
+    transform: translateX(1%);
+  }
+
+  66.6666% {
+    transform: translateX(-1%);
+  }
+
+  100% {
+    transform: none;
+  }
 }
