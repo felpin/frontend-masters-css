@@ -65,10 +65,15 @@ body {
   }
 
   // Add invert styles here to :before
-  // ...
+  &[data-flip="invert"]:before {
+    transform: translate(calc(var(--deltaX) * 1px), calc(var(--deltaY) * 1px)) scale(var(--deltaW), var(--deltaH));
+  }
 
   // Add play styles here to :before
-  // ...
+  &[data-flip="play"]:before {
+    transform: none;
+    transition: transform 250ms;
+  }
 
   > .ui-caption {
     font-size: 2rem;

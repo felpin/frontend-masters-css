@@ -28,8 +28,30 @@
     const appEl = document.querySelector('#app');
 
     appEl.addEventListener('click', () => {
-      app.dataset.state =
-        app.dataset.state === 'collapsed' ? 'expanded' : 'collapsed';
+        const first = figureEl.getBoundingClientRect()
+
+        app.dataset.state =
+            app.dataset.state === 'collapsed' ? 'expanded' : 'collapsed';
+
+        requestAnimationFrame(() => {
+            const last = figureEl.getBoundingClientRect()
+
+            const deltaX = first.left - last.left
+            const deltaY = first.top - last.top
+            const deltaW = first.width / last.width
+            const deltaH = first.height / last.height
+
+            figureEl.style.setProperty('--deltaX', deltaX.toString(10));
+            figureEl.style.setProperty('--deltaY', deltaY.toString(10));
+            figureEl.style.setProperty('--deltaW', deltaW.toString(10));
+            figureEl.style.setProperty('--deltaH', deltaH.toString(10));
+
+            figureEl.dataset.flip = 'invert'
+
+            requestAnimationFrame(() => {
+                figureEl.dataset.flip = 'play'
+            })
+        })
     });
     // ...
   </script>
