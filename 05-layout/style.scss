@@ -79,5 +79,14 @@ body {
     font-size: 2rem;
     font-weight: bold;
     color: white;
+
+    &[data-flip="invert"] {
+      transform: translate(calc(var(--deltaX) * 1px), calc(var(--deltaY) * 1px)) scale(var(--deltaW), var(--deltaH));
+    }
+
+    &[data-flip="play"] {
+      transform: none;
+      transition: transform 250ms;
+    }
   }
 }

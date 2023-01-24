@@ -28,31 +28,36 @@
     const appEl = document.querySelector('#app');
 
     appEl.addEventListener('click', () => {
-        const first = figureEl.getBoundingClientRect()
+        flip(figureEl)
+        flip(captionEl)
 
         app.dataset.state =
             app.dataset.state === 'collapsed' ? 'expanded' : 'collapsed';
+    });
+
+    function flip(element) {
+        const first = element.getBoundingClientRect()
 
         requestAnimationFrame(() => {
-            const last = figureEl.getBoundingClientRect()
+            const last = element.getBoundingClientRect()
 
             const deltaX = first.left - last.left
             const deltaY = first.top - last.top
             const deltaW = first.width / last.width
             const deltaH = first.height / last.height
 
-            figureEl.style.setProperty('--deltaX', deltaX.toString(10));
-            figureEl.style.setProperty('--deltaY', deltaY.toString(10));
-            figureEl.style.setProperty('--deltaW', deltaW.toString(10));
-            figureEl.style.setProperty('--deltaH', deltaH.toString(10));
+            element.style.setProperty('--deltaX', deltaX.toString(10));
+            element.style.setProperty('--deltaY', deltaY.toString(10));
+            element.style.setProperty('--deltaW', deltaW.toString(10));
+            element.style.setProperty('--deltaH', deltaH.toString(10));
 
-            figureEl.dataset.flip = 'invert'
+            element.dataset.flip = 'invert'
 
             requestAnimationFrame(() => {
-                figureEl.dataset.flip = 'play'
+                element.dataset.flip = 'play'
             })
         })
-    });
-    // ...
+
+    }
   </script>
 </html>
